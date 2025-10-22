@@ -1,13 +1,9 @@
-# Use the official lightweight Apache image
-FROM httpd:alpine
+FROM python:3.12-alpine
 
-# Set working directory (optional but good practice)
-WORKDIR /usr/local/apache2/htdocs/
+WORKDIR /app
 
-# Copy all frontend files into Apache's web root
-COPY . /usr/local/apache2/htdocs/
+COPY . .
 
-# Expose port 80 (already exposed by httpd image, but explicit here)
 EXPOSE 80
 
-# Apache starts automatically, no CMD needed
+CMD ["python", "-m", "http.server", "80"]
