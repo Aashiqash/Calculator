@@ -1,14 +1,13 @@
-# Use official Nginx image
-FROM nginx:alpine
+# Use the official lightweight Apache image
+FROM httpd:alpine
 
-# Remove default Nginx website
-RUN rm -rf /usr/share/nginx/html/*
+# Set working directory (optional but good practice)
+WORKDIR /usr/local/apache2/htdocs/
 
-# Copy your app files into the Nginx web directory
-COPY ./Calculator_app/ /usr/share/nginx/html
+# Copy all frontend files into Apache's web root
+COPY . .
 
-# Expose port 80
+# Expose port 80 (already exposed by httpd image, but explicit here)
 EXPOSE 80
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Apache starts automatically, no CMD needed
