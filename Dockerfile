@@ -5,7 +5,7 @@ FROM httpd:alpine
 WORKDIR /usr/local/apache2/htdocs/
 
 # Copy all frontend files into Apache's web root
-COPY . .
+COPY . /usr/local/apache2/htdocs/
 
 # Expose port 80 (already exposed by httpd image, but explicit here)
 EXPOSE 80
